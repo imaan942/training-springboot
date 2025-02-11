@@ -31,6 +31,15 @@ public class MaintenanceService {
                 .collect(Collectors.toList());
     }
 
+    public MaintenanceDTO createMaintenance(MaintenanceDTO maintenanceDTO){
+        Maintenance maintenance = new Maintenance();
+        maintenance.setDetails(maintenanceDTO.getDetails());
+        maintenance.setServiceDate(maintenanceDTO.getServiceDate());
+        maintenance.setServiceType(maintenanceDTO.getServiceType());
+        maintenance.setTruckId(maintenanceDTO.getTruckId());
+        Maintenance save_maintenance = maintenanceRepository.save(maintenance);
+        return mapToDTO(save_maintenance);
+    }
     private MaintenanceDTO mapToDTO(Maintenance maintenance){
         return new MaintenanceDTO(
                 maintenance.getId(),
