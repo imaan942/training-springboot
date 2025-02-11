@@ -1,6 +1,7 @@
 package com.training.fleet.controllers;
 
 import com.training.fleet.dto.MaintenanceDTO;
+import com.training.fleet.dto.TruckDTO;
 import com.training.fleet.service.MaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,5 +31,15 @@ public class MaintenanceController {
         return ResponseEntity.ok(
                 maintenanceService.getAllMaintenances()
         );
+    }
+
+    //Create Maintenance Record
+    @PostMapping
+    public ResponseEntity<MaintenanceDTO> createMaintenance(@RequestBody MaintenanceDTO maintenanceDTO){
+
+        MaintenanceDTO createdMaintenance = maintenanceService.createMaintenance(maintenanceDTO);
+
+        return ResponseEntity.ok(createdMaintenance);
+
     }
 }
